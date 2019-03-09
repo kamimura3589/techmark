@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from '../../components/Sidebar';
 import firebase from '../../config/firebase';
+import MicrolinkCard from '@microlink/react';
 
 class Dashboard extends React.Component {
   state = {
@@ -8,23 +9,6 @@ class Dashboard extends React.Component {
     categories: [],
   };
 
-  componentDidMount() {
-    const ref = firebase.firestore().collection('categories');
-
-    ref.get().then(querySnapshot => {
-      const categories = [];
-      querySnapshot.forEach(doc => {
-        const {name} = doc.data();
-        categories.push({
-          id: doc.id,
-          name,
-        });
-        this.setState({
-          categories,
-        });
-      });
-    });
-  }
   onChange = event => {
     const {name, value} = event.target;
     this.setState({
@@ -55,8 +39,6 @@ class Dashboard extends React.Component {
     const {link} = this.state;
     return (
       <div>
-        Dashboard
-        <Sidebar categories={this.state.categories} />
         <input
           type="text"
           name="link"

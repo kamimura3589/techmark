@@ -1,0 +1,9 @@
+{
+  "name": "ogp-perser",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "ogp-parser": "^0.4.3"
+  }
+}

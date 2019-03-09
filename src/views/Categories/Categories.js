@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from '../../config/firebase';
+import MicrolinkCard from '@microlink/react';
 
 class Categories extends React.Component {
   state = {
@@ -35,12 +36,9 @@ class Categories extends React.Component {
     const {links} = this.state;
     return (
       <div>
-        Categoriry
         {links.map(links => (
           <div key={links.id}>
-            <a href={links.url} target="_blank">
-              {links.url}
-            </a>
+            <MicrolinkCard url={links.url} size="large" />
           </div>
         ))}
       </div>

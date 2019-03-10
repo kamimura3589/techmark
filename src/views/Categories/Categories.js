@@ -1,6 +1,13 @@
 import React from 'react';
 import firebase from '../../config/firebase';
 import MicrolinkCard from '@microlink/react';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  margin-top: 32px;
+  position: absolute;
+  left: 180px;
+`;
 
 class Categories extends React.Component {
   state = {
@@ -35,13 +42,13 @@ class Categories extends React.Component {
   render() {
     const {links} = this.state;
     return (
-      <div>
+      <Container>
         {links.map(links => (
           <div key={links.id}>
             <MicrolinkCard url={links.url} size="large" />
           </div>
         ))}
-      </div>
+      </Container>
     );
   }
 }

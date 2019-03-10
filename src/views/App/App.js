@@ -5,13 +5,12 @@ import MicrolinkCard from '@microlink/react';
 import styled from 'styled-components';
 import {Normalize} from 'styled-normalize';
 
-const Flex = styled.div`
-  display: flex;
-`;
+const Container = styled.div``;
 
 class Dashboard extends React.Component {
   state = {
     categories: [],
+    currentUser: {},
   };
 
   componentDidMount() {
@@ -31,6 +30,7 @@ class Dashboard extends React.Component {
       });
     });
   }
+
   onChange = event => {
     const {name, value} = event.target;
     this.setState({
@@ -40,14 +40,14 @@ class Dashboard extends React.Component {
   };
 
   render() {
-    const {categories} = this.state;
+    const {categories, currentUser} = this.state;
     return (
       <div>
         <Normalize />
-        <Flex>
+        <Container>
           <Sidebar categories={categories} />
           {this.props.children}
-        </Flex>
+        </Container>
       </div>
     );
   }

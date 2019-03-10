@@ -7,7 +7,7 @@ import {Normalize} from 'styled-normalize';
 
 const Container = styled.div``;
 
-class Dashboard extends React.Component {
+class App extends React.Component {
   state = {
     categories: [],
     currentUser: {},
@@ -53,4 +53,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default App;

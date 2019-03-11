@@ -9,6 +9,11 @@ const Container = styled.div`
   left: 180px;
 `;
 
+const LinkCard = styled(MicrolinkCard)`
+  width: 300px;
+  height: 300px;
+`;
+
 class Categories extends React.Component {
   state = {
     links: [],
@@ -45,7 +50,7 @@ class Categories extends React.Component {
       <Container>
         {links.map(links => (
           <div key={links.id}>
-            <MicrolinkCard url={links.url} size="large" />
+            <LinkCard url={links.url} size="large" />
           </div>
         ))}
       </Container>

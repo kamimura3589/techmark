@@ -4,13 +4,18 @@ import firebase from '../../config/firebase';
 import MicrolinkCard from '@microlink/react';
 import styled from 'styled-components';
 import {Normalize} from 'styled-normalize';
+import {BulletList} from 'react-content-loader';
 
 const Container = styled.div``;
+
+const MyBulletListLoader = () => <BulletList />;
 
 class App extends React.Component {
   state = {
     categories: [],
     currentUser: {},
+    showMenu: false,
+    isLoading: true,
   };
 
   componentDidMount() {
@@ -26,6 +31,7 @@ class App extends React.Component {
         });
         this.setState({
           categories,
+          isLoading: false,
         });
       });
     });
@@ -39,13 +45,35 @@ class App extends React.Component {
     });
   };
 
+  /*
+   * DropMenu logick
+   */
+  showMenu = event => {
+    event.preventDefault();
+
+    this.setState({showMenu: true}, () => {
+      document.addEventListener('click', this.closeMenu);
+    });
+  };
+
+  closeMenu = () => {
+    this.setState({showMenu: false}, () => {
+      document.removeEventListener('click', this.closeMenu);
+    });
+  };
+
   render() {
-    const {categories, currentUser} = this.state;
+    const {categories, currentUser, showMenu, isLoading} = this.state;
     return (
       <div>
         <Normalize />
         <Container>
-          <Sidebar categories={categories} />
+          <Sidebar
+            categories={categories}
+            modal={this.showMenu}
+            showMenu={showMenu}
+            isLoading={isLoading}
+          />
           {this.props.children}
         </Container>
       </div>
